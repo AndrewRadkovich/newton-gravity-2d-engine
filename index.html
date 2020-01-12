@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<script src="js/main.js"></script>
+<script src="src/main.js"></script>
 
 <body>
 
@@ -11,10 +11,55 @@
 </body>
 
 <script>
-    let spaceTime = new SpaceTime(document.getElementById("myCanvas"));
-    spaceTime.add(new SpaceObject(100, 5, "#000000", new Point(300, 250)));
-    spaceTime.add(new SpaceObject(200, 10, "#000000", new Point(350, 300)));
-    spaceTime.start();
+
+    function f(value) {
+        return new Force(value);
+    }
+
+    function fv(force, vector) {
+        return new ForceVector(force, vector);
+    }
+
+    function so(mass, position, fv, space) {
+        return new SpaceObject(mass, position, fv, space);
+    }
+
+    function p(x, y) {
+        return new Point(x, y);
+    }
+
+    function v(x, y) {
+        return new Vector(x, y);
+    }
+
+    const canvas = document.getElementById("myCanvas");
+
+    const resetCanvas = (space) => {
+        var ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    const drawSingleSpaceObject = (spaceObject) => {
+        console.log(spaceObject);
+        var ctx = canvas.getContext("2d");
+        ctx.beginPath();
+        ctx.arc(spaceObject.position.x, spaceObject.position.y, 50, 0, 2 * Math.PI);
+        ctx.fillStyle = "#000000";
+        ctx.fill();
+    }
+
+    let space = new Space();
+
+    let so1 = so(10, p(10, 10), fv(f(0), v(0, 0)), space);
+    let so2 = so(10, p(20, 20), fv(f(0), v(0, 0)), space);
+    let so3 = so(10, p(20, 10), fv(f(0), v(0, 0)), space);
+
+    let time = new Time(t => t < 1000, space, resetCanvas, drawSingleSpaceObject, space => space);
+
+    while (time.hasNext()) {
+        time.next();
+    }
+
 </script>
 
 </html>

@@ -1,0 +1,28 @@
+{
+  "name": "gravity-engine",
+  "version": "1.0.0",
+  "description": "2d space mechanics engine",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndrewRadkovich/newton-gravity-2d-engine.git"
+  },
+  "keywords": [
+    "space",
+    "mechanics",
+    "2d",
+    "engine"
+  ],
+  "author": "Andrei Radkovich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndrewRadkovich/newton-gravity-2d-engine/issues"
+  },
+  "homepage": "https://github.com/AndrewRadkovich/newton-gravity-2d-engine#readme"
+}
